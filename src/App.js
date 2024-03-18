@@ -27,6 +27,7 @@ console.log(action,"action")
     fetchData();
   }, []);
 
+  
   const fetchData = async () => {
     try {
       const response = await axios.get(
