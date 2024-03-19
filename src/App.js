@@ -68,14 +68,14 @@ function App() {
         Execution Time of API: ~{executiontime && executiontime.toFixed(2)}
       </h2>
       <h2>
-       Round of Execution time of Add or Update API : 
+        Round of Time of Execution Add or Update API :
         {componentExecutionTime ? componentExecutionTime.toFixed(2) : " ---"}
       </h2>
 
       <div className="top-row">
         <Resizable
           className="my-element"
-          style={{ border: "1px solid" }}
+          style={{ border: "1px solid", backgroundColor: "#a9adab" }}
           defaultSize={{
             width: "50%",
             height: 200,
@@ -129,7 +129,7 @@ function App() {
         </Resizable>
         <Resizable
           className="my-element"
-          style={{ border: "1px solid" }}
+          style={{ border: "1px solid" , backgroundColor: "#84b29b"}}
           defaultSize={{
             width: "50%",
             height: 200,
@@ -185,7 +185,7 @@ function App() {
       <div className="bottom-row">
         <Resizable
           className="my-element"
-          style={{ border: "1px solid" }}
+          style={{ border: "1px solid", backgroundColor: "#9b90e3"  }}
           defaultSize={{
             width: "100%",
             height: 200,
