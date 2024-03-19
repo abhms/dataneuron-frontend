@@ -64,13 +64,15 @@ function App() {
   console.log(data, "data");
   return (
     <div className="App">
+      <div className="executiontime">
       <h2>
-        Execution Time of API: ~{executiontime && executiontime.toFixed(2)}
+        Execution Time of API : ~{executiontime && executiontime.toFixed(2)}
       </h2>
       <h2>
         Round of Time of Execution Add or Update API :
         {componentExecutionTime ? componentExecutionTime.toFixed(2) : " ---"}
       </h2>
+      </div>
 
       <div className="top-row">
         <Resizable
@@ -83,16 +85,16 @@ function App() {
         >
           <div className="data-container">
             <div className="data">
-              <strong>First Name:</strong> {data?.comp1Data[0]?.firstname}
+              <strong>First Name : </strong> {data?.comp1Data[0]?.firstname}
             </div>
             <div className="data">
-              <strong>Last Name:</strong> {data?.comp1Data[0]?.lastname}
+              <strong>Last Name : </strong> {data?.comp1Data[0]?.lastname}
             </div>
             <div className="data">
-              <strong>Email:</strong> {data?.comp1Data[0]?.email}
+              <strong>Email : </strong> {data?.comp1Data[0]?.email}
             </div>
-            <strong>API Call:</strong> {data?.comp1Data[0]?.apiCall}{" "}
-            <strong>API Update:</strong> {data?.comp1Data[0]?.apiupdate}
+            <strong>API Call : </strong> {data?.comp1Data[0]?.apiCall}{" "}
+            <strong>API Update : </strong> {data?.comp1Data[0]?.apiupdate}
             <div className="buttons">
               <button
                 onClick={() => {
@@ -137,16 +139,16 @@ function App() {
         >
           <div className="data-container">
             <div className="data">
-              <strong>First Name:</strong> {data?.comp2Data[0]?.firstname}
+              <strong>First Name : </strong> {data?.comp2Data[0]?.firstname}
             </div>
             <div className="data">
-              <strong>Last Name:</strong> {data?.comp2Data[0]?.lastname}
+              <strong>Last Name : </strong> {data?.comp2Data[0]?.lastname}
             </div>
             <div className="data">
-              <strong>Email:</strong> {data?.comp2Data[0]?.email}
+              <strong>Email : </strong> {data?.comp2Data[0]?.email}
             </div>
-            <strong>API Call:</strong> {data?.comp2Data[0]?.apiCall}{" "}
-            <strong>API Update:</strong> {data?.comp2Data[0]?.apiupdate}
+            <strong>API Call : </strong> {data?.comp2Data[0]?.apiCall}{" "}
+            <strong>API Update : </strong> {data?.comp2Data[0]?.apiupdate}
             <div className="buttons">
               <button
                 onClick={() => {
@@ -193,16 +195,16 @@ function App() {
         >
           <div className="data-container">
             <div className="data">
-              <strong>First Name:</strong> {data?.comp3Data[0]?.firstname}
+              <strong>First Name : </strong> {data?.comp3Data[0]?.firstname}
             </div>
             <div className="data">
-              <strong>Last Name:</strong> {data?.comp3Data[0]?.lastname}
+              <strong>Last Name : </strong> {data?.comp3Data[0]?.lastname}
             </div>
             <div className="data">
-              <strong>Email:</strong> {data?.comp3Data[0]?.email}
+              <strong>Email : </strong> {data?.comp3Data[0]?.email}
             </div>
-            <strong>API Call:</strong> {data?.comp3Data[0]?.apiCall}{" "}
-            <strong>API Update:</strong> {data?.comp3Data[0]?.apiupdate}
+            <strong>API Call : </strong> {data?.comp3Data[0]?.apiCall}{" "}
+            <strong>API Update : </strong> {data?.comp3Data[0]?.apiupdate}
             <div className="buttons">
               <button
                 onClick={() => {
