@@ -11,17 +11,10 @@ const Modal = ({
   setData,
   setcomponentExecutionTime,
 }) => {
-  console.log(
-    email,
-    firstname,
-    lastname,
-    action,
-    number,
-    "email, firstname, lastname, action, number"
-  );
   const [editedEmail, setEditedEmail] = useState(email);
   const [editedFirstname, setEditedFirstname] = useState(firstname);
   const [editedLastname, setEditedLastname] = useState(lastname);
+  //fetching all data 
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -35,7 +28,9 @@ const Modal = ({
       console.error("Error fetching data:", error);
     }
   };
+  // update and add api for component 1
   const add1 = async () => {
+    //add data in component 1
     if (action == "add") {
       try {
         const response = await axios.post(
@@ -55,6 +50,8 @@ const Modal = ({
       }
     } else {
       try {
+    //update data in component 1
+
         const response = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/updateComp1`,
           {
@@ -75,8 +72,9 @@ const Modal = ({
       }
     }
   };
-  
+  //update and add data in conponent2
   const add2 = async () => {
+    //add data in component 2
     if (action == "add") {
       try {
         const response = await axios.post(
@@ -97,6 +95,7 @@ const Modal = ({
       }
     } else {
       try {
+    //update data in component 2
         const response = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/updateComp2`,
           {
@@ -115,7 +114,9 @@ const Modal = ({
       }
     }
   };
+  //add and update data in component3
   const add3 = async () => {
+    //add data in component 3
     if (action == "add") {
       try {
         const response = await axios.post(
@@ -136,6 +137,7 @@ const Modal = ({
       }
     } else {
       try {
+    //add data in component 3
         const response = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/updateComp3`,
           {
@@ -154,20 +156,22 @@ const Modal = ({
       }
     }
   };
-
+// for updating data on render time of this component 
   useEffect(() => {
     setEditedEmail(email);
     setEditedFirstname(firstname);
     setEditedLastname(lastname);
   }, [email, firstname, lastname, number]);
-
+// for making email field editable
   const handleEmailChange = (event) => {
     setEditedEmail(event.target.value);
   };
+// for making firstname field editable
 
   const handleFirstnameChange = (event) => {
     setEditedFirstname(event.target.value);
   };
+// for making lastname field editable
 
   const handleLastnameChange = (event) => {
     setEditedLastname(event.target.value);
@@ -212,6 +216,7 @@ const Modal = ({
             <button onClick={onClose} style={{ backgroundColor: "red" }}>
               Close
             </button>
+            {/**this button is for making api call according to requirement */}
             <button
               onClick={() => {
                 if (number && number === 1) {

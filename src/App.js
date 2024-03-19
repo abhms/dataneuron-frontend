@@ -2,12 +2,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import React, { useEffect, useRef, useState } from "react";
 import { Resizable } from "re-resizable";
-// import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
 import Modal from "./modal/modal";
-// import {setData} from "./dataSlice";
 function App() {
-  // const dispatch = useDispatch();
   const [data, setData] = useState(null);
   const [executiontime, setExecutionTime] = useState();
   const [componentExecutionTime, setcomponentExecutionTime] = useState();
@@ -18,36 +15,27 @@ function App() {
     2: { isOpen: false, action: "" },
     3: { isOpen: false, action: "" },
   });
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  //   setAction("add");
-  // };
-  const updateModal = () => {
-    setIsModalOpen(true);
-    setAction("update");
-  };
-  console.log(action, "action");
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
+
+// fetching data on render time of this component
   useEffect(() => {
     fetchData();
   }, []);
 
+// open modal function
   const openModal = (number, action) => {
     setModalState((prevState) => ({
       ...prevState,
       [number]: { isOpen: true, action },
     }));
   };
-
+// close modal function
   const closeModal = (number) => {
     setModalState((prevState) => ({
       ...prevState,
       [number]: { isOpen: false, action: "" },
     }));
   };
-
+// fetching all data 
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -66,15 +54,18 @@ function App() {
     <div className="App">
       <div className="executiontime">
       <h2>
-        Execution Time of API : ~{executiontime && executiontime.toFixed(2)}
+        {/** Get Api execution time  */}
+        Approx Execution Time of API : ~{executiontime && executiontime.toFixed(2)}
       </h2>
       <h2>
+        {/**Add or Update Api execution time*/}
         Round of Time of Execution Add or Update API :
         {componentExecutionTime ? componentExecutionTime.toFixed(2) : " ---"}
       </h2>
       </div>
 
       <div className="top-row">
+        {/**First Resizable component */}
         <Resizable
           className="my-element"
           style={{ border: "1px solid", backgroundColor: "#a9adab" }}
@@ -83,6 +74,7 @@ function App() {
             height: 200,
           }}
         >
+          {/**all the data of first component */}
           <div className="data-container">
             <div className="data">
               <strong>First Name : </strong> {data?.comp1Data[0]?.firstname}
@@ -129,6 +121,8 @@ function App() {
             />
           </div>
         </Resizable>
+        {/**second Resizable component */}
+
         <Resizable
           className="my-element"
           style={{ border: "1px solid" , backgroundColor: "#84b29b"}}
@@ -136,7 +130,8 @@ function App() {
             width: "50%",
             height: 200,
           }}
-        >
+          >
+          {/**all the data of second component */}
           <div className="data-container">
             <div className="data">
               <strong>First Name : </strong> {data?.comp2Data[0]?.firstname}
@@ -185,6 +180,8 @@ function App() {
         </Resizable>
       </div>
       <div className="bottom-row">
+        {/**third Resizable component */}
+
         <Resizable
           className="my-element"
           style={{ border: "1px solid", backgroundColor: "#9b90e3"  }}
@@ -193,6 +190,7 @@ function App() {
             height: 200,
           }}
         >
+          {/**all the data of third and last component */}
           <div className="data-container">
             <div className="data">
               <strong>First Name : </strong> {data?.comp3Data[0]?.firstname}
