@@ -14,7 +14,8 @@ const Modal = ({
   const [editedEmail, setEditedEmail] = useState(email);
   const [editedFirstname, setEditedFirstname] = useState(firstname);
   const [editedLastname, setEditedLastname] = useState(lastname);
-  //fetching all data 
+  const [error, setError] = useState("");
+  //fetching all data
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -50,7 +51,7 @@ const Modal = ({
       }
     } else {
       try {
-    //update data in component 1
+        //update data in component 1
 
         const response = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/updateComp1`,
@@ -95,7 +96,7 @@ const Modal = ({
       }
     } else {
       try {
-    //update data in component 2
+        //update data in component 2
         const response = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/updateComp2`,
           {
@@ -137,7 +138,7 @@ const Modal = ({
       }
     } else {
       try {
-    //add data in component 3
+        //add data in component 3
         const response = await axios.post(
           `${process.env.REACT_APP_BACKEND_URL}/updateComp3`,
           {
@@ -156,22 +157,39 @@ const Modal = ({
       }
     }
   };
-// for updating data on render time of this component 
+  // for updating data on render time of this component
   useEffect(() => {
     setEditedEmail(email);
     setEditedFirstname(firstname);
     setEditedLastname(lastname);
   }, [email, firstname, lastname, number]);
-// for making email field editable
+  // for making email field editable
   const handleEmailChange = (event) => {
-    setEditedEmail(event.target.value);
+    const email = event.target.value;
+    setEditedEmail(email);
+
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailRegex.test(email);
+
+    // Check if the email is in the correct format
+    if (!isValidEmail) {
+      // Email is not in the correct format
+      setError("no");
+    } else {
+      // Email is in the correct format
+      const email = event.target.value;
+      setEditedEmail(email);
+      setError("yess");
+    }
   };
-// for making firstname field editable
+  console.log(error, "rrrrr");
+  // for making firstname field editable
 
   const handleFirstnameChange = (event) => {
     setEditedFirstname(event.target.value);
   };
-// for making lastname field editable
+  // for making lastname field editable
 
   const handleLastnameChange = (event) => {
     setEditedLastname(event.target.value);
@@ -188,9 +206,14 @@ const Modal = ({
           </span>
         </div>
         <div className="modal-content">
-        <h1 style={{alignContent:"center"}}>{action && action=="add"?"Add":"Update"}</h1>
+          <h1 style={{ alignContent: "center" }}>
+            {action && action == "add" ? "Add" : "Update"}
+          </h1>
 
           <label>Email:</label>
+          <p style={{ color: "red" }}>
+            {error && error == "no" && "Email should be valid"}
+          </p>
           <input
             value={editedEmail}
             onChange={handleEmailChange}
@@ -218,6 +241,7 @@ const Modal = ({
             </button>
             {/**this button is for making api call according to requirement */}
             <button
+              disabled={error === "no"} //making button dynamic when email is valid
               onClick={() => {
                 if (number && number === 1) {
                   add1();
@@ -228,7 +252,8 @@ const Modal = ({
                 }
               }}
             >
-              {action}
+              {error === "no" ? "Disabled" : action}{" "}
+              {/**making button dynamic when email is not valid then button get disabled otherwise it add or Update the data */}
             </button>
           </div>
         </div>
